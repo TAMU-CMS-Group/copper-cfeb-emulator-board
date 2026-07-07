@@ -1,0 +1,43 @@
+# ISE intermediate and generated files
+*.ngc
+*.ngd
+*.ngo
+*.nga
+*.ngl
+*.ngr
+*.bit
+*.mcs
+*.bgn
+*.bld
+*.drc
+*.lso
+*.pad
+*.par
+*.pcf
+*.ptwx
+*.rpt
+*.srp
+*.twr
+*.twx
+*.unroutes
+*.ut
+*.xpi
+*.map
+*.mrp
+*.gise
+
+# ISE generated directories
+iseconfig/
+_ngo/
+_xmsgs/
+xlnx_auto_0_xdb/
+xst/
+netgen/
+tempsynthesis/
+
+# Build output
+build/
+
+# OS
+.DS_Store
+Thumbs.db
