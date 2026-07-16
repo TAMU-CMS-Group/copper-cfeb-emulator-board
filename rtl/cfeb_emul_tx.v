@@ -16,7 +16,7 @@ reg [1:0] state = 2'b00;
 wire [23:0] out_wone, out_wzer, out_prbs, out_a5a5;
 reg [3:0] rsts = 4'b1111;
 // assign led  = rsts;
-assign spare7   = ccb_bc0;
+assign spare7   = lhc_ck;
 
 reg [27:0] div_cnt = 28'd0;
 reg     slow_en = 1'b0;
@@ -30,7 +30,6 @@ BUFG BUFG_inst (
     .O (clk_40), // Clock buffer output
     .I (ibufg_lhc) // Clock buffer input
 );
-assign spare8   = clk_40;
 
 wire    clk0_dcm;
 wire    clkfb   ;
