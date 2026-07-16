@@ -142,7 +142,7 @@ always@( posedge clk_80 ) begin
     ready_80    <= ready_40;
 end
 
-always@( posedge clk_80 ) begin
+always@( posedge clk_40 ) begin
     if (!ready_80) begin
         state   <= 2'b00;
         rsts [0] <= dcm_locked;
@@ -152,6 +152,11 @@ always@( posedge clk_80 ) begin
         cfeb1out    <= 24'hFFFFFF;
         cfeb2out    <= 24'hFFFFFF;
         cfeb3out    <= 24'hFFFFFF;
+    end
+end
+
+always@( posedge clk_80 ) begin
+    if (!ready_80) begin
     end
     else begin
         if (resync_start_80) begin
