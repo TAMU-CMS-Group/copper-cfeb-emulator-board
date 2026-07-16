@@ -1,0 +1,6 @@
+verilog work "WalkingZeros_SIG24.v"
+verilog work "WalkingOnes_SIG24.v"
+verilog work "PRBS_SIG24.v"
+verilog work "A5A5_SIG24.v"
+verilog work "../../../../JerryX/TMB_2005_EMU/clock_divider.v"
+verilog work "cfeb_emul_tx.v"

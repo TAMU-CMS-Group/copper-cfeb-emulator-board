@@ -1,0 +1,132 @@
+# Make array for connectors:  outputs for CFEBs:  cfeb{1-3}_[0-23]
+NET "cfeb1out[0]" LOC = P30;
+NET "cfeb1out[1]" LOC = P49;
+NET "cfeb1out[2]" LOC = P29;
+NET "cfeb1out[3]" LOC = P48;
+NET "cfeb1out[4]" LOC = P28;
+NET "cfeb1out[5]" LOC = P47;
+NET "cfeb1out[6]" LOC = P27;
+NET "cfeb1out[7]" LOC = P46;
+NET "cfeb1out[8]" LOC = P25;
+NET "cfeb1out[9]" LOC = P42;
+NET "cfeb1out[10]" LOC = P31;
+NET "cfeb1out[11]" LOC = P41;
+NET "cfeb1out[12]" LOC = P19;
+NET "cfeb1out[13]" LOC = P32;
+NET "cfeb1out[14]" LOC = P24;
+NET "cfeb1out[15]" LOC = P18;
+NET "cfeb1out[16]" LOC = P21;
+NET "cfeb1out[17]" LOC = P16;
+NET "cfeb1out[18]" LOC = P20;
+NET "cfeb1out[19]" LOC = P15;
+NET "cfeb1out[20]" LOC = P12;
+NET "cfeb1out[21]" LOC = P13;
+NET "cfeb1out[22]" LOC = P11;
+NET "cfeb1out[23]" LOC = P10;
+
+NET "cfeb2out[0]" LOC = P76;
+NET "cfeb2out[1]" LOC = P87;
+NET "cfeb2out[2]" LOC = P75;
+NET "cfeb2out[3]" LOC = P85;
+NET "cfeb2out[4]" LOC = P71;
+NET "cfeb2out[5]" LOC = P84;
+NET "cfeb2out[6]" LOC = P70;
+NET "cfeb2out[7]" LOC = P83;
+NET "cfeb2out[8]" LOC = P69;
+NET "cfeb2out[9]" LOC = P82;
+NET "cfeb2out[10]" LOC = P77;
+NET "cfeb2out[11]" LOC = P79;
+NET "cfeb2out[12]" LOC = P60;
+NET "cfeb2out[13]" LOC = P78;
+NET "cfeb2out[14]" LOC = P64;
+NET "cfeb2out[15]" LOC = P59;
+NET "cfeb2out[16]" LOC = P63;
+NET "cfeb2out[17]" LOC = P58;
+NET "cfeb2out[18]" LOC = P62;
+NET "cfeb2out[19]" LOC = P57;
+NET "cfeb2out[20]" LOC = P54;
+NET "cfeb2out[21]" LOC = P55;
+NET "cfeb2out[22]" LOC = P51;
+NET "cfeb2out[23]" LOC = P50;
+#
+NET "cfeb3out[0]" LOC = P112;
+NET "cfeb3out[1]" LOC = P124;
+NET "cfeb3out[2]" LOC = P111;
+NET "cfeb3out[3]" LOC = P121;
+NET "cfeb3out[4]" LOC = P110;
+NET "cfeb3out[5]" LOC = P120;
+NET "cfeb3out[6]" LOC = P105;
+NET "cfeb3out[7]" LOC = P117;
+NET "cfeb3out[8]" LOC = P104;
+NET "cfeb3out[9]" LOC = P116;
+NET "cfeb3out[10]" LOC = P113;
+NET "cfeb3out[11]" LOC = P115;
+NET "cfeb3out[12]" LOC = P99;
+NET "cfeb3out[13]" LOC = P114;
+NET "cfeb3out[14]" LOC = P103;
+NET "cfeb3out[15]" LOC = P98;
+NET "cfeb3out[16]" LOC = P102;
+NET "cfeb3out[17]" LOC = P96;
+NET "cfeb3out[18]" LOC = P101;
+NET "cfeb3out[19]" LOC = P93;
+NET "cfeb3out[20]" LOC = P91;
+NET "cfeb3out[21]" LOC = P92;
+NET "cfeb3out[22]" LOC = P90;
+NET "cfeb3out[23]" LOC = P88;
+
+#LEDs Outputs
+NET "led[0]" LOC = P3;
+NET "led[1]" LOC = P4;
+NET "led[2]" LOC = P5;
+NET "led[3]" LOC = P6;
+//esc l = lower case
+#switches Inputs
+NET "sw[1]" LOC = P53;
+NET "sw[2]" LOC = P80;
+NET "sw[3]" LOC = P97;
+NET "sw[4]" LOC = P123;
+
+#FPGA selector FPGAID Input
+//NET "fpga_id" LOC = P33;
+
+#Input from push button
+//NET "pb" LOC = P35;
+
+#34pin connector CCB Inputs
+//NET "stat57" LOC = P141; #from CCB Clct_status[5] or [7]
+//NET "stat68" LOC = P142; #from CCB Clct_status[6] or [8]
+#NET "ccb_stat5" LOC = P141; #from CCB Clct_status[5] or [7]
+#NET "ccb_stat6" LOC = P142; #from CCB Clct_status[6] or [8]
+NET "lhc_ck" LOC = P132; #From ccb clock40
+NET "ccb_bc0" LOC = P134; #From ccb BC0
+//NET "ccb_l1a" LOC = P135; #From ccb L1A
+//NET "ccb_cmd" LOC = P138; #From ccb Cmd_Stobe
+//NET "ccb_data" LOC = P139; #From ccb Programmable_Output_1+(Data_Strobe)
+//NET "ccb_resync" LOC = P140;  #From CCB Programmable_Output_2+(L1Reset)
+
+# spare pins:  P7, P8, iodata3:P68
+# init_b: P67
+# vs-pins: vs1=P44, vs0=P45, vs2=P43 
+NET "spare7" LOC = P7;
+NET "spare8" LOC = P8;
+
+#input clocks
+NET "clockin1" LOC = P126;
+NET "clockin3" LOC = P125;
+NET "clockin2" LOC = P127;
+
+#NET "clockin_9" LOC = P131;
+#NET "clockin_10"LOC = P140;
+
+//NET "ck125" LOC = P129;
+
+# clock routing constraints
+//NET "pb" CLOCK_DEDICATED_ROUTE = FALSE;
+NET "ccb_bc0" CLOCK_DEDICATED_ROUTE = FALSE;
+
+//NET "ck125" TNM_NET = "clock125";
+//TIMESPEC "TS_clock125" = PERIOD "clock125" 8 ns HIGH 50%;
+# # NET "ck125p" period=8ns high 50%;
+
+NET "lhc_ck" TNM_NET = "lhc_clock";
+TIMESPEC "TS_LHC_clock" = PERIOD "lhc_clock" 25 ns HIGH 50%;
