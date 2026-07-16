@@ -142,10 +142,18 @@ always@( posedge clk_80 ) begin
     ready_80    <= ready_40;
 end
 
+reg [23:0] heartbeat_cnt = 24'd0;
+reg     clk_40_heartbeat = 1'b0;
+
+always@( posedge clk_40 ) begin
+    heartbeat_cnt   <= heartbeat_cnt + 1'b1;
+    clk_40_heartbeat    <= heartbeat_cnt[23];
+end
+
 assign led[0]   = dcm_locked;
 assign led[1]   = dcm_status[1];
 assign led[2]   = dcm_status[2];
-assign led[3]   = ccb_bc0;
+assign led[3]   = clk_40_heartbeat;
 
 always@( posedge clk_80 ) begin
     if (!ready_80) begin
