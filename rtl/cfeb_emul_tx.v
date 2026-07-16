@@ -20,7 +20,8 @@ assign spare7   = ccb_bc0;
 
 reg [27:0] div_cnt = 28'd0;
 reg     slow_en = 1'b0;
-wire    ibufg_lhc, clk_40 ;
+wire    ibufg_lhc;
+wire    clk_40  ;
 IBUFG IBUFG_inst (
     .O (ibufg_lhc),
     .I (lhc_ck)
@@ -29,6 +30,7 @@ BUFG BUFG_inst (
     .O (clk_40), // Clock buffer output
     .I (ibufg_lhc) // Clock buffer input
 );
+assign spare8   = clk_40;
 
 wire    clk0_dcm;
 wire    clkfb   ;
