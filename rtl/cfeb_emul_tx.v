@@ -30,6 +30,12 @@ BUFG BUFG_inst (
     .I (ibufg_lhc) // Clock buffer input
 );
 
+wire    clk0_dcm;
+wire    clkfb   ;
+BUFG bufg_fb_inst (
+    .I (clk0_dcm),
+    .O (clkfb)
+);
 wire    clk_80  ;
 wire    clk_reset;
 wire [7:0] dcm_status;
@@ -52,7 +58,7 @@ DCM #(.SIM_MODE("SAFE"), // Simulation: "SAFE" vs. "FAST", see "Synthesis and Si
 .PHASE_SHIFT( - 51), // Amount of fixed phase shift from -255 to 255
 .STARTUP_WAIT("FALSE") // Delay configuration DONE until DCM LOCK, TRUE/FALSE
 ) DCM_inst (
-    .CLK0 (), // 0 degree DCM CLK output
+    .CLK0 (clk0_dcm), // 0 degree DCM CLK output
     .CLK180 (), // 180 degree DCM CLK output
     .CLK270 (), // 270 degree DCM CLK output
     .CLK2X (), // 2X DCM CLK output
@@ -64,12 +70,12 @@ DCM #(.SIM_MODE("SAFE"), // Simulation: "SAFE" vs. "FAST", see "Synthesis and Si
     .LOCKED (dcm_locked), // DCM LOCK status output
     .PSDONE (), // Dynamic phase adjust done output
     .STATUS (dcm_status), // 8-bit DCM status bits output
-    .CLKFB (), // DCM clock feedback
+    .CLKFB (clkfb), // DCM clock feedback
     .CLKIN (ibufg_lhc), // Clock input (from IBUFG, BUFG or DCM)
     .PSCLK (), // Dynamic phase adjust clock input
     .PSEN (), // Dynamic phase adjust enable input
     .PSINCDEC (), // Dynamic phase adjust increment/decrement
-    .RST (clk_reset) // DCM asynchronous reset input
+    .RST (1'b0 ) // DCM asynchronous reset input
 );
 
 always@( posedge clk_40 ) begin
@@ -139,7 +145,10 @@ end
 always@( posedge clk_80 ) begin
     if (!ready_80) begin
         state   <= 2'b00;
-        rsts    <= 4'b1111;
+        led [0] <= dcm_locked;
+        led [1] <= ready_40;
+        led [2] <= ready_80;
+        led [3] <= resync_start_80;
         cfeb1out    <= 24'hFFFFFF;
         cfeb2out    <= 24'hFFFFFF;
         cfeb3out    <= 24'hFFFFFF;
