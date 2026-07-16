@@ -145,10 +145,10 @@ end
 always@( posedge clk_80 ) begin
     if (!ready_80) begin
         state   <= 2'b00;
-        led [0] <= dcm_locked;
-        led [1] <= ready_40;
-        led [2] <= ready_80;
-        led [3] <= resync_start_80;
+        rsts [0] <= dcm_locked;
+        rsts [1] <= ready_40;
+        rsts [2] <= ready_80;
+        rsts [3] <= resync_start_80;
         cfeb1out    <= 24'hFFFFFF;
         cfeb2out    <= 24'hFFFFFF;
         cfeb3out    <= 24'hFFFFFF;
