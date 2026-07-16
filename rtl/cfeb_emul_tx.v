@@ -15,7 +15,7 @@ module cfeb_emul_tx(
 reg [1:0] state = 2'b00;
 wire [23:0] out_wone, out_wzer, out_prbs, out_a5a5;
 reg [3:0] rsts = 4'b1111;
-assign led  = rsts;
+// assign led  = rsts;
 assign spare7   = ccb_bc0;
 
 reg [27:0] div_cnt = 28'd0;
@@ -142,21 +142,18 @@ always@( posedge clk_80 ) begin
     ready_80    <= ready_40;
 end
 
-always@( posedge clk_40 ) begin
-    if (!ready_80) begin
-        state   <= 2'b00;
-        rsts [0] <= dcm_locked;
-        rsts [1] <= dcm_status[0];
-        rsts [2] <= dcm_status[1];
-        rsts [3] <= dcm_status[2];
-        cfeb1out    <= 24'hFFFFFF;
-        cfeb2out    <= 24'hFFFFFF;
-        cfeb3out    <= 24'hFFFFFF;
-    end
-end
+assign led[0]   = dcm_locked;
+assign led[1]   = dcm_status[1];
+assign led[2]   = dcm_status[2];
+assign led[3]   = ccb_bc0;
 
 always@( posedge clk_80 ) begin
     if (!ready_80) begin
+        state   <= 2'b00;
+        rsts    <= 4'b1111;
+        cfeb1out    <= 24'hFFFFFF;
+        cfeb2out    <= 24'hFFFFFF;
+        cfeb3out    <= 24'hFFFFFF;
     end
     else begin
         if (resync_start_80) begin
