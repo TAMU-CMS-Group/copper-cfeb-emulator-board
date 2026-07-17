@@ -17,19 +17,10 @@ wire [23:0] out_wone, out_wzer, out_prbs, out_a5a5;
 reg [3:0] rsts = 4'b1111;
 // assign led  = rsts;
 
-reg [27:0] div_cnt = 28'd0;
-reg     slow_en = 1'b0;
-wire    ibufg_lhc;
-wire    clk_40  ;
 IBUFG IBUFG_inst (
-    .O (ibufg_lhc),
+    .O (clk_40),
     .I (lhc_ck)
 );
-BUFG BUFG_inst (
-    .O (clk_40), // Clock buffer output
-    .I (ibufg_lhc) // Clock buffer input
-);
-assign spare7   = clk_40;
 
 wire    clk0_dcm;
 wire    clkfb   ;
@@ -79,6 +70,8 @@ DCM #(.SIM_MODE("SAFE"), // Simulation: "SAFE" vs. "FAST", see "Synthesis and Si
     .RST (1'b0 ) // DCM asynchronous reset input
 );
 
+reg [27:0] div_cnt = 28'd0;
+reg     slow_en = 1'b0;
 always@( posedge clk_40 ) begin
     if (div_cnt >= 28'd40_000_000 - 1) begin
         div_cnt <= 28'd0;
