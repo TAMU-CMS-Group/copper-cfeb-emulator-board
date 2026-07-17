@@ -15,7 +15,7 @@ module cfeb_emul_tx(
 reg [1:0] state = 2'b00;
 wire [23:0] out_wone, out_wzer, out_prbs, out_a5a5;
 reg [3:0] rsts = 4'b1111;
-// assign led  = rsts;
+assign led  = rsts;
 
 IBUFG IBUFG_inst (
     .O (clk_40),
@@ -69,6 +69,7 @@ DCM #(.SIM_MODE("SAFE"), // Simulation: "SAFE" vs. "FAST", see "Synthesis and Si
     .PSINCDEC (), // Dynamic phase adjust increment/decrement
     .RST (1'b0 ) // DCM asynchronous reset input
 );
+assign spare7   = dcm_locked;
 
 reg [27:0] div_cnt = 28'd0;
 reg     slow_en = 1'b0;
@@ -136,26 +137,13 @@ always@( posedge clk_80 ) begin
     ready_80    <= ready_40;
 end
 
-reg [23:0] heartbeat_cnt = 24'd0;
-reg     clk_40_heartbeat = 1'b0;
-
-always@( posedge clk_40 ) begin
-    heartbeat_cnt   <= heartbeat_cnt + 1'b1;
-    clk_40_heartbeat    <= heartbeat_cnt[23];
-end
-
-assign led[0]   = dcm_locked;
-assign led[1]   = clk_40_heartbeat;
-assign led[2]   = 1'b0;
-assign led[3]   = 1'b1;
-
 always@( posedge clk_80 ) begin
     if (!ready_80) begin
         state   <= 2'b00;
-        rsts    <= 4'b1111;
-        cfeb1out    <= 24'hFFFFFF;
-        cfeb2out    <= 24'hFFFFFF;
-        cfeb3out    <= 24'hFFFFFF;
+        rsts    <= div_cnt[27:24];
+        cfeb1out    <= 24'h000000;
+        cfeb2out    <= 24'h000000;
+        cfeb3out    <= 24'h000000;
     end
     else begin
         if (resync_start_80) begin
