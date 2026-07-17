@@ -145,9 +145,9 @@ always@( posedge clk_40 ) begin
 end
 
 assign led[0]   = dcm_locked;
-assign led[1]   = dcm_status[1];
-assign led[2]   = dcm_status[2];
-assign led[3]   = clk_40_heartbeat;
+assign led[1]   = clk_40_heartbeat;
+assign led[2]   = 1'b0;
+assign led[3]   = 1'b1;
 
 always@( posedge clk_80 ) begin
     if (!ready_80) begin
