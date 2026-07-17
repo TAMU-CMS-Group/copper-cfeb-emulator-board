@@ -81,10 +81,10 @@ NET "led[2]" LOC = P5;
 NET "led[3]" LOC = P6;
 //esc l = lower case
 #switches Inputs
-NET "sw[1]" LOC = P53;
-NET "sw[2]" LOC = P80;
-NET "sw[3]" LOC = P97;
-NET "sw[4]" LOC = P123;
+NET "sw[0]" LOC = P53;
+NET "sw[1]" LOC = P80;
+NET "sw[2]" LOC = P97;
+NET "sw[3]" LOC = P123;
 
 #FPGA selector FPGAID Input
 //NET "fpga_id" LOC = P33;
@@ -111,9 +111,9 @@ NET "spare7" LOC = P7;
 NET "spare8" LOC = P8;
 
 #input clocks
-NET "clockin1" LOC = P126;
-NET "clockin3" LOC = P125;
-NET "clockin2" LOC = P127;
+// NET "clockin1" LOC = P126;
+// NET "clockin3" LOC = P125;
+// NET "clockin2" LOC = P127;
 
 #NET "clockin_9" LOC = P131;
 #NET "clockin_10"LOC = P140;
